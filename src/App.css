@@ -1,5 +1,4 @@
 .App {
-
 }
 
 .App-logo {
@@ -7,25 +6,44 @@
   height: 80px;
 }
 
-.App-header {
-  text-align: center;
+.container {
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+
+}
+.Header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 300px;
+  padding: 0em;
   color: white;
+  padding: 5em 5em 5em 8em;
+
 }
 
-.App-title {
+.Header-title {
   color: white;
-  font-size: 1.5em;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.Header-description {
+  color: white;
+  font-size: 1em;
 }
 
 .App-intro {
   font-size: large;
+  margin: 10em;
 }
 
 .MainContent {
-  padding: 1em 1em 1em 1em;
+
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  width: 600px;
+  padding: 1em 1em 0em 0em;
 }
 
 .MainContent-title {
@@ -41,10 +59,14 @@
 
 
 .Sidebar {
+
+  grid-column: 1 / 3;
+  grid-row: 1;
+
   background-color: #222;
-  width: 10em;
-  height: 75%;
-  margin: 2em 1em 2em 5em;
+  width: 300px;
+  height: auto;
+  margin: 2em 0em 0em -1.5em;
   padding: 1em 1em 1em 1em;
 }
 
@@ -59,6 +81,20 @@
   opacity: 0.75;
 }
 
+footer {
+  background-color: #222;
+  color: white;
+  padding: 1em 1em 1em 8em;
+}
+
+.Button {
+  padding: 10px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border: 2px solid #333;
+  box-shadow: #333
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
