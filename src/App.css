@@ -1,5 +1,3 @@
-.App {
-}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -7,67 +5,56 @@
 }
 
 .container {
-
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 0.5fr;
+  grid-auto-rows: minmax(250px, auto);
   grid-gap: 10px;
 
+  padding: 1em 7em 1em 7em;
 }
-.Header {
-  background-color: #222;
-  height: 300px;
-  padding: 0em;
-  color: white;
-  padding: 5em 5em 5em 8em;
 
+.Header {
+  background-color: #00E5FF;
+  height: 250px;
+  color: #222;
+  padding: 5em 5em 5em 8em;
 }
 
 .Header-title {
-  color: white;
+  color: #222;
   font-size: 2.5em;
   font-weight: bold;
 }
 
 .Header-description {
-  color: white;
+  color: #222;
   font-size: 1em;
 }
 
 .App-intro {
   font-size: large;
-  margin: 10em;
 }
 
 .MainContent {
-
-  grid-column: 2 / 4;
-  grid-row: 1 / 3;
-  width: 600px;
-  padding: 1em 1em 0em 0em;
+  padding: 1em 1em 1em 1em;
 }
 
 .MainContent-title {
-  color: #222;
+  color: #FFF;
   font-size: 2em;
 }
 
 .MainContent-body {
   font-size: 1em;
-  color: #222;
+  color: #FFF;
   opacity: 0.75;
 }
 
 
 .Sidebar {
-
-  grid-column: 1 / 3;
-  grid-row: 1;
-
-  background-color: #222;
-  width: 300px;
-  height: auto;
-  margin: 2em 0em 0em -1.5em;
+  background-color: orange;
   padding: 1em 1em 1em 1em;
+
 }
 
 .Sidebar-title {
@@ -82,18 +69,24 @@
 }
 
 footer {
-  background-color: #222;
+  background-color: #333;
   color: white;
   padding: 1em 1em 1em 8em;
 }
 
 .Button {
   padding: 10px;
-  background-color: orange;
+  background-color: #222;
   color: white;
   font-weight: bold;
   border: 2px solid #333;
   box-shadow: #333
+}
+
+.Box {
+  background: orange;
+  color: #222;
+  padding: 3em;
 }
 
 @keyframes App-logo-spin {
