@@ -4,15 +4,15 @@ import './App.css';
 
 
 
-const AppTitle = "MatheusApp"
-const AppDescription = "Creating UI with components is awesome"
+const AppTitle = "Welcome to ReactTask";
+const AppDescription = "Creating tasks in React";
 
-const SidebarDescription = "This function is a valid React component because it accepts a single “props” (which stands for properties) object argument with data and returns a React element. We call such components “functional” because they are literally JavaScript functions."
+const SidebarDescription = "This feature lets you add tasks to the To Do List";
+const FooterTitle = "This is my footer description";
+const FooterDescription = SidebarDescription;
 
-const FooterTitle = "This is my footer description"
-const FooterDescription = SidebarDescription
 
-const SidebarListItems = ["item 1", "item 2", "item 3", "item 1", "item 2", "item 3"];
+const tasksSample = ['Task 1', 'Task 2', 'Task 3', 'Task 1', 'Task 2', 'Task 3'];
 
 class App extends Component {
 
@@ -25,24 +25,17 @@ class App extends Component {
     console.log('mounted');
   }
 
-
-
   render() {
     return (
-      <div className="bg-dark">
+      <div className="bg-gray">
         <Header title={AppTitle} description={AppDescription} />
-
-        <div className="container">
-
-        <Main title="This is my main title" body={SidebarDescription} />
-
-
-        <Sidebar body={SidebarDescription} />
+        <div className="MainGrid">
+          <Main/>
+          <Sidebar body={SidebarDescription} />
 
 
         </div>
-
-        <Footer title={ FooterTitle } body={ FooterDescription } />
+        <Footer title={AppTitle} body={FooterDescription}/>
       </div>
     );
   }
@@ -51,16 +44,12 @@ class App extends Component {
 class Header extends Component {
 
   render() {
-
-    const { title, description } = this.props;
-
     return (
-      <header className="Header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="Header-title">{this.props.title}</h1>
-          <p className="Header-description">{ this.props.description }</p>
+      <header className="Header bg-dark">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="Header-title">{this.props.title}</h1>
+        <p className="Header-description">{ this.props.description }</p>
       </header>
-
     );
   }
 }
@@ -68,17 +57,59 @@ class Header extends Component {
 class Main extends Component {
 
   render() {
-
-    const { title, body } =  this.props;
-
     return (
       <main className="MainContent">
-          <h1 className="MainContent-title">{this.props.title}</h1>
-          <p className="MainContent-body">
-          {this.props.body}
-         </p>
-
+        <TasksList tasks={tasksSample} />
       </main>
+    );
+  }
+}
+
+function TasksList(props) {
+
+    const tasks = props.tasks;
+
+    return (
+      <div>
+      <ul className="TaskGrid">
+        { tasks.map((task) =>
+          <TaskItem key={task.id} title={task} description={task} />
+        )}
+      </ul>
+    </div>
+    );
+
+}
+
+function TaskItem(props) {
+  const title = props.title;
+  return <div className="Card"><li className="TaskItem"><h2>{title}</h2></li></div>;
+}
+
+class AddTaskForm extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    //this.setState({this.tasks.title})
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="i.e Go to the gy, do groceries" className="NameForm" value={this.state.value} onChange={this.handleChange} />
+        <input className="Button" type="submit" value="Add" />
+      </form>
     );
   }
 }
@@ -96,60 +127,29 @@ class Sidebar extends Component {
   }
 
   render() {
-
-    const { body } =  this.props;
-
+    const {body} = this.props;
     return (
       <div>
-      <aside className="Sidebar">
-          <Clock date={new Date()} />
+        <aside className="Sidebar">
+          <h1>Add a Task</h1>
           <p className="Sidebar-body">
-          {this.props.body}
-         </p>
-
-          <SidebarList items={SidebarListItems} />
-         <Button text="Show/Hide sidebar" onClick={this.toggle} />
-      </aside>
-
-      
-        
-
+            {this.props.body}
+          </p>
+          <AddTaskForm className="NameForm"/>
+        </aside>
       </div>
     );
   }
 }
 
-function SidebarList(props) {
-  const items = props.items;
-  const itemsList = items.map((item) =>
-     <ListItem key={items.toString()} value={item} />
-  );
-  return (
-      <ul>
-        {itemsList}
-      </ul>
-    )
-}
-
-function ListItem(props) {
-  const value = props.value;  
-  return <li>{value}</li>
-}
-
 class Footer extends Component {
   render() {
 
-    const { title, body } =  this.props;
-
     return (
-      <footer className="Footer">
-          <h3 className="footer-title">{this.props.title}</h3>
-          <p>{this.props.body}</p>
-          <ul className="footer-links">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-         </ul>
+      <footer className="Footer bg-dark">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h3 className="footer-title">{this.props.title}</h3>
+        <p>{this.props.body}</p>
       </footer>
     );
   }
@@ -192,7 +192,6 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Clock</h1>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
