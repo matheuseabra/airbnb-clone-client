@@ -9,7 +9,7 @@
   grid-template-columns: 1fr 0.5fr;
   grid-auto-rows: minmax(250px, auto);
   grid-gap: 10px;
-
+  grid-row-gap: 10px;
   padding: 1em 7em 1em 7em;
 }
 

@@ -12,6 +12,7 @@ const SidebarDescription = "This function is a valid React component because it 
 const FooterTitle = "This is my footer description"
 const FooterDescription = SidebarDescription
 
+const SidebarListItems = ["item 1", "item 2", "item 3", "item 1", "item 2", "item 3"];
 
 class App extends Component {
 
@@ -99,17 +100,40 @@ class Sidebar extends Component {
     const { body } =  this.props;
 
     return (
-      
+      <div>
       <aside className="Sidebar">
           <Clock date={new Date()} />
           <p className="Sidebar-body">
           {this.props.body}
          </p>
+
+          <SidebarList items={SidebarListItems} />
          <Button text="Show/Hide sidebar" onClick={this.toggle} />
       </aside>
 
+      
+        
+
+      </div>
     );
   }
+}
+
+function SidebarList(props) {
+  const items = props.items;
+  const itemsList = items.map((item) =>
+     <ListItem key={items.toString()} value={item} />
+  );
+  return (
+      <ul>
+        {itemsList}
+      </ul>
+    )
+}
+
+function ListItem(props) {
+  const value = props.value;  
+  return <li>{value}</li>
 }
 
 class Footer extends Component {
