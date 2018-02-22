@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MediaQuery from 'react-responsive';
 import logo from './logo.svg';
 import './App.css';
 
@@ -45,7 +46,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header className="Header bg-dark">
+      <header className="Header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="Header-title">{this.props.title}</h1>
         <p className="Header-description">{ this.props.description }</p>
@@ -65,25 +66,37 @@ class Main extends Component {
   }
 }
 
-function TasksList(props) {
+class TasksList extends Component {
 
-    const tasks = props.tasks;
+    constructor(props) {
+      super(props);
+      this.handleChange = this.handleChange.bind(this);
+      this.state = {tasksState: ''};
+    }
+  
+    handleChange(e) {
+      this.setState({tasks: e.target.value});
+    }
 
-    return (
-      <div>
-      <ul className="TaskGrid">
-        { tasks.map((task) =>
-          <TaskItem key={task.id} title={task} description={task} />
-        )}
-      </ul>
-    </div>
-    );
-
+    render() {
+      const tasks = this.props.tasks;
+      const tasksState = this.state.tasksState;
+      return (
+        <div>
+        <ul className="TaskGrid">
+          { tasks.map((task) =>
+            <TaskItem key={task.id} title={task} description={task} />
+          )}
+        </ul>
+      </div>
+      );
+    }
+    
 }
 
 function TaskItem(props) {
   const title = props.title;
-  return <div className="Card"><li className="TaskItem"><h2>{title}</h2></li></div>;
+  return <div className="Card"><li className="TaskItem"><h2>{title}</h2><p>{SidebarDescription}</p></li></div>;
 }
 
 class AddTaskForm extends Component {
@@ -105,6 +118,7 @@ class AddTaskForm extends Component {
   }
 
   render() {
+    const value = this.props.value;
     return (
       <form onSubmit={this.handleSubmit}>
         <input type="text" placeholder="i.e Go to the gy, do groceries" className="NameForm" value={this.state.value} onChange={this.handleChange} />
@@ -115,16 +129,6 @@ class AddTaskForm extends Component {
 }
 
 class Sidebar extends Component {
-
-  state = {
-    toggle: true
-  }
-
-  toggle = () => {
-    this.setState({
-      toggle: !this.state.toggle
-    })
-  }
 
   render() {
     const {body} = this.props;
@@ -161,39 +165,6 @@ class Button extends Component {
     const { text } =  this.props;
     return (
       <button type="button" onClick={this.toggle} className="Button">{text}</button>
-    );
-  }
-}
-
-class Clock extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
     );
   }
 }
