@@ -1,93 +1,76 @@
+.App {
+  display: flex;
+}
+
+.MainGrid {
+  flex-basis: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Map {
+  flex-grow: 1;
+  display: flex;
+  height: 100vh;
+  top: 0;
+  position: sticky;
+}
+
+
+.FlatList {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  grid-gap: 10px;
+}
+
+.FlatItem {
+  margin-top: 10px;
+  background-color: #FFF;
+  flex-basis: calc (50% - 10px);
+
+  transform: translateY(5px);
+  transition: .15s ease-in-out;
+}
+
+.FlatItem:hover {
+  transform: translateY(-5px);
+  transition: .15s ease-in-out;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+
+.FlatPicture {
+  padding: 0;
+}
+.FlatTitle {
+  padding: 0.5em;
+  color: #222;
+  font-weight: bold;
+}
+
+.FlatPrice {
+  color: #222;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding-left: 0.5em; 
+}
+
+.FlatPicture {
+  height: 200px;
+  width: auto;
+  background-size: cover;
+  background-position: center;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
-.MainGrid {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-auto-rows: minmax(150px, auto);
-  grid-gap: 10px;
-  grid-row-gap: 10px;
-  padding: 1em 3em 1em 3em;
-}
-
-.TaskGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(250px, auto);
-  grid-gap: 25px;
-  grid-row-gap: 25px;
-  margin: 0;
-  list-style: none;
-}
-
-.Card {
-  background-color: #FFF;
-  color: #222;
-  border-radius: 2px;
-}
-
-.TaskItem {
-  padding: 1em;
-  color: #222;
-}
-
-.Header {
-  height: 200px;
-  padding: 5em 5em 5em 8em;
-}
-
-.Header-title {
-  color: #fff;
-  font-size: 2.5em;
-  font-weight: bold;
-}
-
-.Header-description {
-  color: #EEE;
-  font-size: 1em;
-}
-
 .App-intro {
   font-size: large;
-}
-
-.MainContent {
-  padding: 0em 1em 12em 1em;
-}
-
-
-.NameForm {
-  padding: 11px;
-  width: 60%;
-  border: none;
-  border-radius: 2px;
-}
-
-.Sidebar {
-  background-color: lightblue;
-  padding: 1em 1em 1em 1em;
-
-}
-
-.Sidebar-title {
-  color: white;
-  font-size: 1.5em;
-}
-
-.Sidebar-body {
-  font-size: 1em;
-  color: #FFF;
-  opacity: 0.75;
-}
-
-footer {
-  height: 30%;
-  padding: 2.5em 6em 5em 6em;
-  width: 100%;
-  color: white;
 }
 
 .Button {
@@ -99,15 +82,6 @@ footer {
   box-shadow: #333
 }
 
-.Box {
-  background: orange;
-  color: #222;
-  padding: 3em;
-}
-
-.Clock >  h2 {
-  color: #FFF;
-}
 
 .bg-dark {
   background-color: #222;
@@ -117,7 +91,16 @@ footer {
   background-color: #333;
 }
 
+.bg-light-gray {
+  background-color: #DDD;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes Flat-item-hover {
+  from { transform: translateY(0px); }
+  to { transform: translateY(15px); }
 }
