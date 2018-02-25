@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import './Marker.css';
 
-class Marker extends Component {
+export default class Marker extends Component {
   render() {
+
+    let MarkerCSSSelector = "Marker";
+    if (this.props.selected) {
+      MarkerCSSSelector += " selectedMarker";
+    }
+
     return (
-      <div className="marker">
-        { this.props.children }
+      <div className={MarkerCSSSelector}>
+       ${ this.props.text }
       </div>
     )
   }
 }
-
-export default Marker;
